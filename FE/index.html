@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Analytics Chat</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar with conversation history -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>📚 History</h2>
+                <button id="refresh-history" class="icon-btn" title="Refresh history">🔄</button>
+            </div>
+            <div id="history-list" class="history-list">
+                <!-- History items will be inserted here -->
+            </div>
+        </aside>
+
+        <!-- Main chat area -->
+        <main class="main-content">
+            <header class="chat-header">
+                <h1>🎬 IMDb Analytics Chat</h1>
+                <p class="subtitle">Powered by Azure Databricks + OpenAI GPT-4</p>
+            </header>
+
+            <!-- Messages container -->
+            <div id="messages-container" class="messages-container">
+                <div class="welcome-message">
+                    <h2>Welcome! 👋</h2>
+                    <p>Ask me anything about movies in the IMDb database:</p>
+                    <ul>
+                        <li>"What are the top 10 highest rated movies?"</li>
+                        <li>"Show me action movies from 2020"</li>
+                        <li>"Which directors have the most movies?"</li>
+                        <li>"Які 5 найкращих фільмів за рейтингом?" (Ukrainian supported!)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Progress indicator -->
+            <div id="progress-container" class="progress-container" style="display: none;">
+                <div class="progress-header">
+                    <span id="progress-status" class="progress-status">🔄 Processing...</span>
+                    <span id="progress-percentage" class="progress-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div id="progress-message" class="progress-message"></div>
+                
+                <!-- SQL Query Display (collapsible) -->
+                <details id="sql-details" class="sql-details" style="display: none;">
+                    <summary>🔍 View SQL Query</summary>
+                    <pre id="sql-query" class="sql-query"></pre>
+                </details>
+            </div>
+
+            <!-- Input area -->
+            <div class="input-area">
+                <textarea 
+                    id="user-input" 
+                    class="user-input" 
+                    placeholder="Ask a question about movies... (Any language supported)"
+                    rows="3"
+                ></textarea>
+                <button id="send-btn" class="send-btn">
+                    <span id="send-btn-text">Send</span>
+                    <span id="send-btn-icon">📤</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

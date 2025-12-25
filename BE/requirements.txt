@@ -1,0 +1,4 @@
+azure-functions
+requests
+openai>=1.0.0
+azure-cosmos>=4.5.0
