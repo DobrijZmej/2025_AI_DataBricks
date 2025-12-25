@@ -25,43 +25,43 @@ This project demonstrates advanced data engineering capabilities by building an 
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                         User Interface                                │
+│                         User Interface                               │
 │                  (Pure JS SPA - Static Web App)                      │
 └────────────────────────────┬─────────────────────────────────────────┘
                              │ REST API
                              ↓
 ┌──────────────────────────────────────────────────────────────────────┐
 │                    Azure Functions Backend                           │
-│  ┌────────────────────────────────────────────────────────────┐     │
-│  │  LLM Orchestrator (Azure OpenAI GPT-4 + Function Calling)  │     │
-│  │          ↓ generates optimized Spark SQL ↓                 │     │
-│  └────────────────────────────────────────────────────────────┘     │
+│  ┌────────────────────────────────────────────────────────────┐      │
+│  │  LLM Orchestrator (Azure OpenAI GPT-4 + Function Calling)  │      │
+│  │          ↓ generates optimized Spark SQL ↓                 │      │
+│  └────────────────────────────────────────────────────────────┘      │
 └────────────────────────────┬─────────────────────────────────────────┘
                              │ Jobs API
                              ↓
-┌──────────────────────────────────────────────────────────────────────┐
-│                   Azure Databricks Lakehouse                         │
+┌─────────────────────────────────────────────────────────────────────┐
+│                   Azure Databricks Lakehouse                        │
 │  ┌─────────────────────────────────────────────────────────┐        │
-│  │  Spark SQL Engine (Databricks Runtime 17.3 LTS)        │        │
-│  │  ├─ Query Optimization (Broadcast joins, predicate     │        │
+│  │  Spark SQL Engine (Databricks Runtime 17.3 LTS)         │        │
+│  │  ├─ Query Optimization (Broadcast joins, predicate      │        │
 │  │  │  pushdown, Delta stats)                              │        │
-│  │  ├─ AI Functions: ai_movie_summary() UDF               │        │
-│  │  └─ Pre-optimized Views (movies_with_ratings, etc.)    │        │
+│  │  ├─ AI Functions: ai_movie_summary() UDF                │        │
+│  │  └─ Pre-optimized Views (movies_with_ratings, etc.)     │        │
 │  └─────────────────────────────────────────────────────────┘        │
-│                             ↓ reads                                   │
+│                             ↓ reads                                 │
 │  ┌─────────────────────────────────────────────────────────┐        │
 │  │              Delta Lake Storage (ADLS Gen2)             │        │
-│  │  ├─ principals_delta (~100M rows - cast & crew)        │        │
-│  │  ├─ persons_delta (~10M rows - actor metadata)         │        │
-│  │  ├─ movies_delta (~15M rows - title metadata)          │        │
-│  │  └─ ratings_delta (~10M rows - user ratings)           │        │
+│  │  ├─ principals_delta (~100M rows - cast & crew)         │        │
+│  │  ├─ persons_delta (~10M rows - actor metadata)          │        │
+│  │  ├─ movies_delta (~15M rows - title metadata)           │        │
+│  │  └─ ratings_delta (~10M rows - user ratings)            │        │
 │  └─────────────────────────────────────────────────────────┘        │
-└──────────────────────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────────────────────────┘
                              ↑
                              │ stores conversation state
                              ↓
 ┌──────────────────────────────────────────────────────────────────────┐
-│  Azure Cosmos DB (NoSQL - conversation tracking with TTL)           │
+│  Azure Cosmos DB (NoSQL - conversation tracking with TTL)            │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
